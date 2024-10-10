@@ -1,0 +1,31 @@
+main .ventajas{
+  background-color: $cream;
+
+  .icono{
+    color: $d-blue;
+    font-size: 2rem;
+  }
+
+  p{
+    font-family: $ff;
+
+    &.ventaja{
+      font-size: 1.2em;
+    }
+  }
+}
+main .ventajas p:not(p.ventaja){
+  font-size: 0.8em;
+}
+
+main .ventajas .row > div{
+  @include FlexConfig(center);
+  flex-direction: column;
+  .texto{
+    text-align: center;
+
+    .ventaja{
+      font-weight: 500;
+    }
+  }
+}

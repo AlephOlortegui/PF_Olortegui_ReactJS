@@ -1,0 +1,19 @@
+.carousel .carousel-inner .carousel-item {
+
+  .dark-bg{
+    background-color: $dark-bg;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .carousel-caption{
+    font-family: $ff;
+    z-index: 3;
+  }
+
+}
+.carousel .carousel-inner .carousel-item:nth-child(even) .carousel-caption{
+  top: 20%;
+}

@@ -1,0 +1,59 @@
+.newsletter{
+  background-color: $brownie;
+  //overlapping
+  position: relative;
+  width: 70%;
+  margin: -5rem auto;
+  border-radius: .3em;
+
+  @include FlexConfig(space-around);
+  align-items: center;
+  flex-direction: column;
+
+  h1{
+    font-size: 1.4rem;
+    font-family: $ff;
+    color: $white;
+  }
+
+  #subscribe{
+      width: 100%;
+      margin-bottom: 1rem;
+
+      // eliminar ese autofocus azul de bootstrap
+        &:focus {
+          outline: none; 
+          box-shadow: none; 
+      }
+  }
+
+  input.button{
+    font-size: 1rem;
+    font-family: $ff;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: #000;
+    background-color: $cream;
+    cursor: pointer;
+  }
+}
+
+// como tratamos de mobile first version design
+// en Index.html tenemos a "featured" y "ventajas"
+
+//por lo del newsletter
+.featured{
+  padding-bottom: map-get($map: $y-espacio, $key: index);
+}
+
+// esto lo vamos a sobre escribir en los formularios registro.html y ingreso.html
+main .ventajas{
+  @if $view == home{
+    padding-top: map-get($map: $y-espacio, $key: index);
+  }
+}

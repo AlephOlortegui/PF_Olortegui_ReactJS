@@ -1,0 +1,24 @@
+.intro{
+  background-color: $brownie;
+  overflow: hidden;
+  max-height: 44px;
+  @include FlexConfig(center);
+
+  &_big_icon{
+    font-size: 5rem;
+    color: $white;
+    opacity: 0.15;
+  }
+
+  &_mensaje{
+    @include FlexConfig(center);
+    font-size: 0.9rem;
+    font-weight: light;
+    color: $white;
+    font-family: $ff;
+
+    span.intro_icon{
+      font-size: 1.2rem; //changed by media queries
+    }
+  }
+}

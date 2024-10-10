@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+$danger: #fb6c6d;
+ $d-blue: #4b5b6d;
+ $l-blue: #f1f5f8;
+ $brownie: #c98574;
+ $white: #fffefe;
+ $l-grey: #f3f3f3;
+ $d-grey: #aea5a1;
+ $cream: #f2ede5;
+ $dark-bg: rgba(0, 0, 0, 0.5);
+ $ff: "Fredoka", sans-serif;
+
+ // thin scroll bar
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+@mixin FlexConfig($jc){
+  display: flex;
+  align-items: center;
+  justify-content: $jc;
+}
+
+//this is for the newsletter being between sections
+$view: home;
+$y-espacio: (
+  index: 100px,
+  indexMd: 45px
+);

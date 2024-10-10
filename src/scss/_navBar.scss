@@ -1,0 +1,36 @@
+nav.navbar a.navbar-brand{
+  color: $d-blue;
+  font-family: $ff;
+  background-color: $white;
+
+  & .title{
+    font-size: 1.8rem;
+  }
+
+  & .sub-title{
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+  }
+
+  & span{
+    color: $d-blue;
+    top: 1rem;
+    right: -2.5rem;
+   }
+}
+// Active link
+nav.navbar ul.navbar-nav a.nav-link.active,
+nav.navbar ul.navbar-nav a.nav-link:hover{
+  color: $d-blue !important;
+  font-weight: bold !important;
+}
+
+ /* carrito link */
+ nav.navbar ul.navbar-nav li.nav-item:last-child a.nav-link{
+  position: relative;
+}
+
+nav.navbar ul.navbar-nav li.nav-item:last-child a.nav-link span.badge{
+  left: 90px;
+}

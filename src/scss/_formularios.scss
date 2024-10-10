@@ -1,0 +1,8 @@
+//overwrite $view
+$view: formulario;
+
+main .formulario + .ventajas{
+  @if $view == formulario{
+    padding-top: 2rem;
+  }
+}

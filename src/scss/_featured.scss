@@ -1,0 +1,38 @@
+.featured figure.model img{
+  border-radius: 0.4rem;
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+}
+.featured .outfits .title{
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .linea {
+    flex-grow: 1; /* La línea ocupará todo el espacio disponible */
+    height: 6px;
+    border-radius: 6px;
+    background-color: $brownie;
+    margin-right: 10px; /* Espacio entre la línea y el texto */
+  }
+  .text {
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    font-family: $ff;
+    font-size: 1.8rem;
+  }
+}
+.featured .outfits figure{
+  margin: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+
+  img{
+    cursor: pointer;
+    border-radius: 0.4rem;
+    width: 190px;
+    height: auto;
+    object-fit: contain;
+  }
+}

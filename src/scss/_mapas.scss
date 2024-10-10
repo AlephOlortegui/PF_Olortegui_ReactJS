@@ -1,0 +1,22 @@
+main .tienda .mapa{
+  background-color: $cream;
+
+  h2{
+    font-family: $ff;
+  }
+
+  ul.nav .nav-link{
+    cursor: pointer;
+    color: $brownie;
+    font-family: $ff;
+
+    &.active{
+      text-decoration: underline;
+    }
+  }
+
+  .tab-content .tab-pane iframe{
+    width: 100%;
+    height: 350px;
+  }
+}

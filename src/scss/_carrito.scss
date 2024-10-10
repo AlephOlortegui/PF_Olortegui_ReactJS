@@ -1,0 +1,39 @@
+main .carrito table td.deleteIcon{
+  font-size: 1.2rem;
+
+  &:hover{
+    color: $danger;
+    cursor: pointer;
+  }
+}
+
+main .carrito table td.producto figcaption{
+  text-transform: capitalize;
+}
+
+main .carrito table td.quantityActions{
+  div{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  span{
+    // display: inline-block;
+    padding: 0.5rem;
+
+    i{
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      &.bi-plus-circle{
+        color: #0d6efd;
+      }
+      &.bi-dash-circle{
+        color: $danger;
+      }
+    }
+  }
+}
