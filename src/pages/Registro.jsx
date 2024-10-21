@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Ventajas } from "../Components"
+import { Ventajas } from "../components"
 
 export const Registro = () => {
   return (
@@ -48,3 +48,4 @@ export const Registro = () => {
     </>
   )
 }
+

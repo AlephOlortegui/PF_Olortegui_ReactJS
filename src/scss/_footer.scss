@@ -68,7 +68,6 @@ footer nav .navItem input:checked ~ label span.icon.eye_slash{
 //Social
 footer nav .navItem.social{
   ul{
-      text-align: center;
       li{
           display: inline-block;
           margin: 0 1rem;
@@ -81,5 +80,15 @@ footer nav .navItem.social{
             font-size: 1.2rem;
           }
       }
+  }
+}
+
+//youtube link
+footer .f_derechos p {
+  @include FlexConfig(center);
+  a{
+    font-size: 1.6rem;
+    color: $white;
+    margin-left: 10px;
   }
 }

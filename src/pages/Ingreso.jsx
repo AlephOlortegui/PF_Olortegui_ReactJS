@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import { Ventajas } from "../Components"
+import { Link } from 'react-router-dom'
+import { Ventajas } from '../components'
 
 export const Ingreso = () => {
   return (

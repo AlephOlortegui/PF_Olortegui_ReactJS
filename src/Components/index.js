@@ -1,19 +1,23 @@
-import { ActiveLink } from "./ActiveLink";
-import { CardWidget } from "./CardWidget";
-import { Footer } from "./Footer";
 import { Layout } from "./Layout";
-import { Mapa } from "./Mapa";
 import { Message } from "./Message";
 import { NavBar } from "./NavBar";
+import { ActiveLink } from "./ActiveLink";
+import { CardWidget } from "./CardWidget";
 import { Ventajas } from "./Ventajas";
+import { Mapa } from "./Mapa";
+import { Footer } from "./Footer";
+import {DocTitle} from './DocTitle'
+import {Loader} from './Loader';
 
 export {
-  ActiveLink,
-  CardWidget,
-  Footer,
+  Loader,
+  DocTitle,
   Layout,
-  Mapa,
   Message,
   NavBar,
-  Ventajas
+  ActiveLink,
+  CardWidget,
+  Ventajas,
+  Mapa,
+  Footer
 }

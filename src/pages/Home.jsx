@@ -1,5 +1,5 @@
 import { bg1, bg2, bg3, bg4, sm_bg1, sm_bg2, sm_bg3, sm_bg4, featured1, outfit1, outfit2, outfit3 } from "../assets"
-import { Ventajas } from "../Components"
+import { Ventajas } from "../components"
 
 export const Home = () => {
   return (

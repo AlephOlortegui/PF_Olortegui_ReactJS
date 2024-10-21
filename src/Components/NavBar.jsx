@@ -1,22 +1,23 @@
-import { CardWidget } from "./CardWidget";
-import { Link, useLocation } from "react-router-dom";
-import { ActiveLink } from "./ActiveLink";
+import { Link, useLocation } from 'react-router-dom'
+import { ActiveLink } from './ActiveLink';
+import { CardWidget } from './CardWidget';
 
 export const NavBar = () => {
+  const {pathname} = useLocation();
 
-  const { pathname } = useLocation();
+   // Definimos un objeto que mapea las rutas a sus correspondientes textos y enlaces.
+   const formMapping = {
+    //'/': {text:'home alabama', link: '/link link_'},
+    '/registro' : {text: 'Registrate', link: '/registro'},
+    '/ingreso' : {text: 'Log in', link: '/ingreso'}
+   }
+   /* Usamos el pathname actual para obtener el texto y el    enlace correspondientes
+     Si el pathname no está en formMapping, se usan los valores por defecto.
+   */
+   const {text: formText = 'Registrate', link: formLink = '/registro'} = formMapping[pathname] || {}
+    /* const {text: datoNuevo} = unObjeto;, estás haciendo "aliasing", 
+    es decir, le das un nuevo nombre a la propiedad text */
 
-  // Definimos un objeto que mapea las rutas a sus correspondientes textos y enlaces.
-  const formMapping = {
-    '/registro': { text: 'Registrate', link: '/registro' },
-    '/ingreso': { text: 'Log in', link: '/ingreso' },
-  };
-
-  // Usamos el pathname actual para obtener el texto y el enlace correspondientes.
-  // Si el pathname no está en formMapping, se usan los valores por defecto.
-  const { text: formText = 'Registrate', link: formLink = '/registro' } = formMapping[pathname] || {};
-  /* const {text: datoNuevo} = unObjeto;, estás haciendo "aliasing", 
-  es decir, le das un nuevo nombre a la propiedad text */
 
   return (
     <nav className="navbar navbar-expand-sm px-3">

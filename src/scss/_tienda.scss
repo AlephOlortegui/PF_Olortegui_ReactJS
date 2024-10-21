@@ -2,56 +2,74 @@ main .tienda .tiendaMenu{
   background-color: $d-blue;
 
   h1,
-  ul.nav a.nav-link{
+  ul.nav button.filter-btn{
     color: $white;
     font-family: $ff;
   } 
 
-  ul.nav a.nav-link{
+  ul.nav button.filter-btn{
     text-transform: capitalize;
     color: $white;
     font-family: $ff;
     border-radius:0.6rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 8px 10px;
 
-    &.active,
-    &:hover{
+    &.clear-filters{
+      background-color: $danger;
+    }
+
+    &.selected,
+    &:hover:not(.clear-filters){
       color: $brownie !important;
       background-color: $cream;
     }
   } 
 }
-// mansory layout 
-main .tienda .mansoryLayout{
-  columns: 260px 4;
-  column-gap: 1rem; 
+// grid layout 
+main .tienda .itemListContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+main .tienda .itemListContainer .item{
+  border-radius: 4px;
+  background-color: $cream;
+  overflow: hidden;
 
-  .producto{
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    a{
-      position: absolute;
+  figure{
+    background-color: $white;
+    height: 280px;
+    flex-shrink: 0; // Para evitar que se reduzca
+
+    img{
+      object-fit: cover;
       width: 100%;
       height: 100%;
-      z-index: 2;
-      background-color: $dark-bg;
-      display: grid;
-      place-items: center;
-      font-family: $ff;
-      font-size: 1.4rem;
-      color: $cream;
-      text-decoration: none;
-      opacity: 0;
-
-      &:hover{
-        opacity: 1;
-      }
     }
   }
 
-  img{
-    width: 100%;
-    height: auto;
+  .info{
+    padding: 15px 15px 5px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que la .info crezca para ocupar el espacio disponible */
+    justify-content: space-between; /* Esto asegura que el contenido esté espaciado */
+
+    div.cta{
+      @include FlexConfig(space-between);
+    }
+
+    p,a{
+      // color: $d-grey;
+      font-family: $ff;
+    }
+
   }
 }

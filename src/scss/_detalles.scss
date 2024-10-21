@@ -1,0 +1,68 @@
+main .detalles{
+  .links{
+    @include FlexConfig(space-between);
+    flex-wrap: wrap;
+    a{
+      font-family: $ff;
+      font-size: 1.3rem;
+      color: $d-blue;
+      text-decoration: none;
+      &:hover{
+        color: $brownie;
+      }
+    }
+  }
+}
+
+main .detalles .item{
+  position: relative;
+
+  @include FlexConfig(space-around);
+
+  figure{
+    width: 320px;
+    height: 500px;
+    overflow: hidden;
+    cursor: zoom-in;
+  
+    .item-img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+  }
+}
+
+main .detalles .item ul.list-group li{
+  font-family: $ff;
+  h6.categoria{
+    text-transform: capitalize;
+  }
+}
+
+main .detalles .item form button{
+  font-family: $ff;
+}
+
+main .detalles .item form .quantityActions{
+  @include FlexConfig(space-around);
+  padding: 0.3rem 0.2rem;
+  border: 1px solid $d-grey;
+  border-radius: 1rem;
+
+  i.bi,
+  p.quantity{
+    font-size: 1.2rem;
+  }
+  i.bi{
+    cursor: pointer;
+
+    &.bi-dash-circle-fill{
+      color: #f82828;
+    }
+    &.bi-plus-circle-fill{
+      color: #0d6efd;
+    }
+  }
+}

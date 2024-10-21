@@ -93,7 +93,7 @@ export const Footer = () => {
                 <i className="bi bi-eye-slash"></i>
               </span>
             </label>
-            <ul>
+            <ul className="text-center text-md-start">
               <li>
                 <i className="bi bi-reddit"></i>
               </li>
@@ -115,7 +115,7 @@ export const Footer = () => {
         </nav>
       <hr className="d-none d-md-block"/>
       <div className="f_derechos pt-4 text-center">
-        <p>&copy; 2024 El Fachero International Textil Industries</p>
+        <p>&copy; 2024 El Fachero International Textil Industries <a href="https://www.youtube.com/@AlephNeoDev/videos"><i className="bi bi-youtube"></i></a></p>
       </div>
     </footer>
   )
