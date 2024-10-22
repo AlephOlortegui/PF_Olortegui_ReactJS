@@ -12,7 +12,7 @@ export const ItemDetailContainer = () => {
   //console.log(id, typeof id)
 
   const location = useLocation();
-  console.log(location) // ItemList.jsx Link state
+  //console.log(location) // ItemList.jsx Link state
 
   const search = location.state?.search || "";
   const typeFilter = location.state?.typeFilter || "Store"
@@ -27,7 +27,7 @@ export const ItemDetailContainer = () => {
           setDocData(docSnap.data()); //is async
         }
         else{
-          console.error("Error: Document not Found")
+          //console.error("Error: Document not Found")
           throw new Error("Error: Document not Found")
         }
       } catch (err) {
@@ -60,7 +60,7 @@ export const ItemDetailContainer = () => {
           {isDocLoading ? (
                 <Loader />
               ) : docData ? (
-                <ItemDetail docData={docData} />
+                <ItemDetail docData={docData} docID={id} />
               ) : (
                 <div>Error: Product not found or no data available</div>
           )}

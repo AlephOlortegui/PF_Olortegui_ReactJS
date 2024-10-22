@@ -28,7 +28,7 @@ export const Tienda = () => {
           id: doc.id,
           ...doc.data()
         }))
-        //console.log(DBdata)
+        console.log(DBdata)
         setClothes(DBdata)
       } catch (err) {
         console.log(err.message)
@@ -87,9 +87,9 @@ export const Tienda = () => {
         <div className="col-12 mt-3">
           {isLoadingData ? <Loader /> : (
             <ItemList 
-                    displayedClothes={displayedClothes}
-                    search={`?${searchParams.toString()}`}
-                    typeFilter={typeFilter}/>
+                displayedClothes={displayedClothes}
+                search={`?${searchParams.toString()}`}
+                typeFilter={typeFilter}/>
           )}
         </div>
 

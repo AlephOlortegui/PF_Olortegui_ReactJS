@@ -11,8 +11,15 @@ export const ItemDetail = ({docData, docID}) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertClass, setAlertClass] = useState("");
 
-  /* isInCart? */
+  const setAlert = (message, type) => {
+    setShowAlert(true);
+    setAlertMessage(message);
+    setAlertClass(type);
+  };
+  const closeAlert = () => setShowAlert(false);
+
   useEffect(() => {
+    //verificar si el producto ya esta en el carrito
     const foundIt = items.find(i=> i.id === docID)
     if(foundIt){
       setIsInCart(true);
@@ -22,54 +29,71 @@ export const ItemDetail = ({docData, docID}) => {
       setIsInCart(false)
       setQuantity(1);
     }
-    //console.log(typeof quantity)
   }, [items])
   
 
-  const handleSubmit = (e) => { 
-    e.preventDefault();
-    const action = e.nativeEvent.submitter.value; 
-    const { cloudSrc, title, price } = docData; 
-
-    if (isInCart) {
-      switch (action) {
-        case "addOne":
-          addOne(); 
-          console.log("quantity addOne: ", quantity)
-          //dispatch({type: "UPDATE_QUANTITY", payload: })
-          break;
+  const addOne = () => { 
+    const currentQuantity = Number(quantity); 
+    if (currentQuantity  < docData.stock) {
+      const newQuantity = currentQuantity  + 1;
+      setQuantity(newQuantity);
   
-        case "removeOne":
-          removeOne();
-          console.log("quantity removeOne: ", quantity)
-          break;
-  
-        case "mainSubmitter":
-          dispatch({ type: "DELETE_ITEM", payload: docID }); 
-          //setAlert("El producto ha sido eliminado!", "primary");
-          break;
-  
-        default:
-          console.error(`Acción desconocida: ${action}`);
-          break;
+      if (isInCart) {
+        // Crear un objeto actualizado sin exceder el stock
+        const updatedItem = { ...docData, id: docID, quantity: newQuantity };
+        dispatch({ type: "ADD_ITEM", payload: updatedItem });
       }
-    } else {
-      const itemToAdd = { id: docID, cloudSrc, title, price, quantity };
-      console.log(typeof itemToAdd.quantity)
-      dispatch({ type: "ADD_ITEM", payload: itemToAdd }); // Agregar al carrito
-      //setAlert("El producto ha sido agregado exitosamente", "success");
     }
   }
 
-  const removeOne = () => { 
-    console.log("remove")
-    setQuantity(p => (p <= 1 ? 1: p - 1))
-  }
-  const addOne = () => { 
-    console.log("addddd: stock ", docData.stock)
-    setQuantity(p => p + 1)
-  }
+  /* const removeOne = () => { 
+    setQuantity(prev => (prev > 1 ? prev - 1 : 1))
+    if(isInCart){
+      // Actualizar/sobreescribir la prop Quantity
+      const updatedItem = {...docData, id: docID, quantity: quantity - 1}
+      dispatch({ type: "ADD_ITEM", payload: updatedItem }); //enviamos ese obj -- pasemos al reducer
+    }
+  } */
+
+  const removeOne = () => {
+    const currentQuantity = Number(quantity);
   
+    if (currentQuantity > 1) {
+      const newQuantity = currentQuantity - 1;
+      setQuantity(newQuantity);
+  
+      if (isInCart) {
+        const updatedItem = { ...docData, id: docID, quantity: newQuantity };
+        dispatch({ type: "ADD_ITEM", payload: updatedItem });
+      }
+    }
+  };
+
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+    let action = e.nativeEvent.submitter.value;
+    const {cloudSrc, title, price} = docData;
+
+    if(isInCart){
+      console.log('esta en carrito - action: ',action)
+      if(action === "addOne") {
+        addOne();
+      }
+      else if(action === "removeOne") {
+        removeOne();
+      }
+      else {
+        dispatch({type: "DELETE_ITEM", payload: docID})
+        setAlert("El producto ha sido eliminado!","primary")
+      }
+    }
+    else{
+      const itemToAdd = {id: docID, cloudSrc, title, price, quantity};
+      dispatch({type: "ADD_ITEM", payload: itemToAdd})
+      setAlert("EL producto ha sido agregado exitosamente","success")
+    }
+  }
+
   let truncatedTitle = docData.title.length > 80
       ? docData.title.slice(0,80) + " . . ."
       : docData.title
@@ -77,6 +101,7 @@ export const ItemDetail = ({docData, docID}) => {
   return (
     <>
       {/* alert */}
+      {showAlert && <Alert alertMessage={alertMessage} alertClass={alertClass} closeAlert={closeAlert}/>}
 
       <div className="col-12 col-md-6 d-flex justify-content-center">
           <figure className="mb-0">
@@ -101,6 +126,7 @@ export const ItemDetail = ({docData, docID}) => {
             <button className="btn" 
                     type={isInCart ? "submit" : "button"}
                     value="removeOne"
+                    // onClick={removeOne}
                     onClick={!isInCart ? removeOne : undefined}>
               <i className="bi bi-dash-circle-fill"></i>
             </button>
@@ -108,6 +134,7 @@ export const ItemDetail = ({docData, docID}) => {
             <button className="btn" 
                     type={isInCart ? "submit" : "button"}
                     value="addOne"
+                    //onClick={addOne}
                     onClick={!isInCart ? addOne : undefined}>
               <i className="bi bi-plus-circle-fill"></i>
             </button>
