@@ -27,7 +27,10 @@ const CarritoReducer = (state, action) => {
       //return [...state, { ...action.payload, quantity: maxQuantity }];
 
     case 'DELETE_ITEM':
-      return state.filter(item => item.id !== action.payload)   
+      return state.filter(item => item.id !== action.payload)
+      
+    case 'CLEAR_CART':
+      return []
   
     default:
       return state

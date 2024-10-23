@@ -28,6 +28,15 @@ main .tienda .tiendaMenu{
     }
   } 
 }
+//error alert
+main .tienda .err-box{
+  position: relative;
+  min-height: 25vh;
+
+  .alert-wrapper{
+    background-color: transparent;
+  }
+}
 // grid layout 
 main .tienda .itemListContainer{
   display: grid;

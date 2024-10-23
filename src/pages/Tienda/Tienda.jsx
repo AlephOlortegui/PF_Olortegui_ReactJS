@@ -1,49 +1,20 @@
-import { useEffect, useState } from "react"
-import { getDocs } from 'firebase/firestore';
-import {productsCollectionRef} from '../../firebase/firebaseConfig';
-import { useGetCategorias } from "../../hooks/useGetCategorias";
 import { useSearchParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { Loader } from "../../components";
+import { Alert, Loader } from "../../components";
+import { useGetAllProducts, useGetCategorias } from "../../hooks";
 
 export const Tienda = () => {
-  const [clothes, setClothes] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
   //console.log(searchParams.toString()) 
   const typeFilter = searchParams.get("type");
 
   const {categoriaLinks, isGettingCategories} = useGetCategorias()
   //console.log(categoriaLinks) //demora unos seg's
-
-  const [isLoadingData, setIsLoadingData] = useState(false)
-  const [err, setError] = useState(null)
-
-  useEffect(() => {
-
-    const getData = async () => { 
-      setIsLoadingData(true)
-      try {
-        const querySnapshot = await getDocs(productsCollectionRef);
-        const DBdata = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        console.log(DBdata)
-        setClothes(DBdata)
-      } catch (err) {
-        console.log(err.message)
-        setError(err.message)
-      }
-      finally{
-        setIsLoadingData(false)
-      }
-    } 
-     getData();
-  }, [])
+  const {dbProducts, isLoading, err} = useGetAllProducts()
 
   const displayedClothes = typeFilter
-          ? clothes.filter(c => c.categoria === typeFilter)
-          : clothes;
+          ? dbProducts.filter(c => c.categoria === typeFilter)
+          : dbProducts;
 
   function handleFilterChange(key, value) {
     setSearchParams(prevParams => {
@@ -70,7 +41,7 @@ export const Tienda = () => {
         <div className="col-12 pt-3 pb-2 tiendaMenu">
           <h1 className="text-center">Nuestros Productos</h1>
           <ul className="nav justify-content-center">
-            {!isGettingCategories && (
+            {(!isGettingCategories && !err) && (
               <>
                 {filterButtons}
                 {typeFilter ? (
@@ -85,7 +56,13 @@ export const Tienda = () => {
         </div>
 
         <div className="col-12 mt-3">
-          {isLoadingData ? <Loader /> : (
+          {isLoading ? <Loader /> : err ? 
+                <div className="err-box">
+                  <Alert
+                        dismissible={false}
+                        alertMessage={err}
+                        alertClass="danger" />
+                </div> : (
             <ItemList 
                 displayedClothes={displayedClothes}
                 search={`?${searchParams.toString()}`}

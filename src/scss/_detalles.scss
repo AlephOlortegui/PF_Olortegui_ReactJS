@@ -32,6 +32,15 @@ main .detalles .item{
       border-radius: 1rem;
     }
   }
+
+  //Alert
+  .err-box{
+    min-height: 25vh;
+    position: relative;
+    .alert-wrapper{
+      background-color: transparent;
+    }
+  }
 }
 
 main .detalles .item ul.list-group li{

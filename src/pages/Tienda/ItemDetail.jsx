@@ -1,22 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import { CarritoContext } from "../../context/CarritoContext"
-import { Alert } from "../../components/Alert"
+import { Alert } from "../../components"
+import { useAlert } from "../../components/Alert"
 
 export const ItemDetail = ({docData, docID}) => {
   const {items, dispatch} = useContext(CarritoContext)
   const [quantity, setQuantity] = useState(1)
   const [isInCart, setIsInCart] = useState(false)
   // Alerts
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertClass, setAlertClass] = useState("");
-
-  const setAlert = (message, type) => {
-    setShowAlert(true);
-    setAlertMessage(message);
-    setAlertClass(type);
-  };
-  const closeAlert = () => setShowAlert(false);
+  const { showAlert, alertMessage, alertClass, setAlert, closeAlert } = useAlert()
 
   /* isInCart? */
   useEffect(() => {
@@ -34,13 +26,13 @@ export const ItemDetail = ({docData, docID}) => {
 
   const handleSubmit = (e) => { 
     e.preventDefault();
-    const { cloudSrc, title, price } = docData; 
+    const { cloudSrc, title, price, stock } = docData; 
     if(isInCart){
       dispatch({type: "DELETE_ITEM", payload: docID})
       setAlert("El producto ha sido eliminado!","primary")
     }
     else{
-      const itemToAdd = { id: docID, cloudSrc, title, price, quantity };
+      const itemToAdd = { id: docID, cloudSrc, title, price, stock, quantity };
       dispatch({ type: "ADD_ITEM", payload: itemToAdd }); // 
       setAlert("EL producto ha sido agregado exitosamente","success")
     }
@@ -66,7 +58,6 @@ export const ItemDetail = ({docData, docID}) => {
     });
   };
     
-  
   let truncatedTitle = docData.title.length > 80
       ? docData.title.slice(0,80) + " . . ."
       : docData.title
@@ -74,7 +65,7 @@ export const ItemDetail = ({docData, docID}) => {
   return (
     <>
       {/* alert */}
-      {showAlert && <Alert alertMessage={alertMessage} alertClass={alertClass} closeAlert={closeAlert}/>}
+      {showAlert && <Alert dismissible={true} alertMessage={alertMessage} alertClass={alertClass} closeAlert={closeAlert}/>}
 
       <div className="col-12 col-md-6 d-flex justify-content-center">
           <figure className="mb-0">

@@ -8,9 +8,11 @@ import { Mapa } from "./Mapa";
 import { Footer } from "./Footer";
 import {DocTitle} from './DocTitle'
 import {Loader} from './Loader';
+import { Alert } from "./Alert";
 
 export {
   Loader,
+  Alert,
   DocTitle,
   Layout,
   Message,
